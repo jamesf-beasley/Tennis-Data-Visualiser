@@ -1,0 +1,80 @@
+body {
+    font-family: "Open Sans", sans-serif;
+    background-color: #202020;
+    color: #E0E0E0
+}
+
+#return_home {
+    position: absolute;
+    top: 1vh;
+    right: 1vh;
+    padding: 0px;
+    font-weight: bold;
+    text-decoration: none; 
+    color: #E0E0E0;
+    background-color: #151515; 
+    padding: 8px 12px; 
+    border-radius: 5px; 
+}
+
+#return_home:hover {
+    text-decoration: underline;
+    background-color: #000000;
+    text-decoration:none; 
+}
+
+#entry {
+    position: absolute;
+    top: -1vh;
+}
+
+#wins_losses {
+    position: absolute;
+    left: 10vh;
+    top: 11vh;
+}
+
+#plot_url {
+    position: absolute;
+    top: 12vh;
+    left: 28vh;
+}
+
+#selectors {
+    position: absolute;
+    bottom: 0.5vh;
+}
+
+select {
+    background-color: #151515; 
+    color: #fff; 
+    border: none; 
+    border-radius: 0; 
+    padding: 5px; 
+    font-family: 'Open Sans', sans-serif; 
+    font-size: 16px; 
+    text-align: center; 
+    appearance: none; 
+    display: inline-block;
+    width: auto; 
+}
+
+select option {
+    background-color: #151515; 
+    color: #fff; 
+}
+
+form button {
+    background-color: #151515;
+    color: #E0E0E0;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+form button:hover {
+    background-color: #000000; 
+}
+

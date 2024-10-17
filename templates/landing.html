@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style_landing.css') }}">
+    <title>Select Tennis Category</title>
+</head>
+<body>
+    <h1>Select Tennis Category</h1>
+    <div id="container">
+        <form action="/category" method="post">
+            <button type="submit" name="category" value="WTA" id="btn1">WTA (Women's Tennis)</button>
+            <button type="submit" name="category" value="LTA" id="btn2">ATP (Men's Tennis)</button>
+        </form>
+    </div>
+</body>
+</html>

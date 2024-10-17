@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ player1_name }} vs {{ player2_name }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style_h2h.css') }}">
+</head>
+<body>
+    <a href="/" class="back-to-home" id="return_home">Back to Home</a>
+
+    <div id="entry">
+        <h1>{{ player1_name }} vs {{ player2_name }}</h1>
+        {% if wins is not none and losses is not none %}
+        <h2>Head-to-Head Results</h2>
+        <h3 id="wins_losses">{{ wins }} : {{ losses }}</h3>
+        {% else %}
+        <p>No head-to-head data available for {{ player1_name }} vs {{ player2_name }}.</p>
+        {% endif %}
+    </div>  
+
+    <div style="width: 1000px; margin: auto;" id="plot_url">
+        {{ plot_url | safe }}
+    </div>
+
+    <div id="selectors">
+        {% if predicted_winner is not none %}
+        <h3>{{ predicted_winner }} is most likely to win in a head-to-head.</h3>
+        {% else %}
+        <p>Unable to predict winner of {{ player1_name }} vs {{ player2_name }}</p>
+        {% endif %}
+        <form action="/get_player_data" method="post">
+            <label for="player">Select Player:</label>
+            <select name="player" id="player">
+                {% for player in players %}
+                    <option value="{{ player }}">{{ player }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="plot_type">Select Plot Type:</label>
+            <select name="plot_type" id="plot_type">
+                <option value="bar_graph">Rank Over Time Bar</option>
+                <option value="scatter_plot">Player Serve Radar</option>
+                <option value="box_plot">Player Domination Box</option>
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+        <form action="/head_to_head" method="post">
+            <label for="player1">Select Player 1:</label>
+            <select name="player1" id="player1">
+                {% for player in players %}
+                    <option value="{{ player }}">{{ player }}</option>
+                {% endfor %}
+            </select>
+            <label for="player2">Select Player 2:</label>
+            <select name="player2" id="player2">
+                {% for player in players %}
+                    <option value="{{ player }}">{{ player }}</option>
+                {% endfor %}
+            </select>
+            <label for="plot_type_h2h">Select Plot Type:</label>
+            <select name="plot_type_h2h" id="plot_type_h2h">
+                <option value="rank_h2h">Rank Over Time Bar</option>
+                <option value="radar_h2h">Serve Comparison Radar</option>
+                <option value="scatter_h2h">Dominance Ratio Scatter</option>
+
+            </select>
+            <button type="submit">Compare</button>
+        </form>
+    </div>
+</body>
+</html>

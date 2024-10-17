@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Tennis Player Rankings</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style_index.css') }}">
+</head>
+<body>
+    <h1>Select a Player and Plot Type</h1>
+    <form action="{{ url_for('get_player_data_route') }}" method="post">
+        <input type="hidden" name="category" value="{{ category }}">
+        
+        <label for="player">Select Player:</label>
+        <select name="player" id="player">
+            {% for player in players %}
+                <option value="{{ player }}">{{ player }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="plot_type">Select Plot Type:</label>
+        <select name="plot_type" id="plot_type">
+            <option value="bar_graph">Rank Over Time Bar</option>
+            <option value="scatter_plot">Player Serve Radar</option>
+            <option value="box_plot">Player Domination Box</option>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+
+    <h1>Compare Two Players</h1>
+    <form action="{{ url_for('head_to_head') }}" method="post">
+        <input type="hidden" name="category" value="{{ category }}">
+        
+        <label for="player1">Select Player 1:</label>
+        <select name="player1" id="player1">
+            {% for player in players %}
+                <option value="{{ player }}">{{ player }}</option>
+            {% endfor %}
+        </select>
+        <label for="player2">Select Player 2:</label>
+        <select name="player2" id="player2">
+            {% for player in players %}
+                <option value="{{ player }}">{{ player }}</option>
+            {% endfor %}
+        </select>
+        <label for="plot_type_h2h">Select Plot Type:</label>
+        <select name="plot_type_h2h" id="plot_type_h2h">
+            <option value="rank_h2h">Rank Over Time Bar</option>
+            <option value="radar_h2h">Serve Comparison Radar</option>
+            <option value="scatter_h2h">Dominance Ratio Scatter</option>
+        </select>
+        <button type="submit">Compare</button>
+    </form>
+</body>
+</html>
